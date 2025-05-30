@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Mi Amor 💕</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top, #fff0f5, #ffc0cb);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(50vh) scale(1.2) rotate(180deg); }
+      100% { transform: translateY(-10vh) scale(0.5) rotate(360deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      margin: auto;
+      padding: 30px 20px;
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    .header h1 {
+      font-size: 3.5em;
+      color: #ff1493;
+      text-shadow: 2px 2px 10px rgba(255, 105, 180, 0.3);
+      animation: bounceIn 1s ease;
+    }
+
+    .header p {
+      color: #c2185b;
+      font-size: 1.3em;
+      margin-bottom: 25px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      margin: 25px 0;
+      padding: 25px;
+      box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .section:hover {
+      transform: scale(1.01);
+    }
+
+    .cute-text {
+      font-size: 1.6em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .emoji-row {
+      font-size: 2.5em;
+      margin: 15px 0;
+      animation: pulseEmoji 2s infinite;
+    }
+
+    @keyframes pulseEmoji {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .message {
+      background: linear-gradient(135deg, #ff69b4, #ff1493);
+      color: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      font-size: 1.3em;
+      line-height: 1.7;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .interactive-button {
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: #fff;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      border-radius: 25px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .interactive-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(255, 20, 147, 0.4);
+    }
+
+    .love-counter {
+      color: #ff1493;
+      font-weight: bold;
+      font-size: 1.6em;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: #fff0f5;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      animation: bounceIn 0.5s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h2 {
+      color: #e91e63;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background-color: #e91e63;
+    }
+
+    .typewriter {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #d81b60;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #d81b60;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="heartsContainer"></div>
+  <div class="container">
+    <div class="header">
+      <h1>Para Mi Amor 💕</h1>
+      <p>Hecho con todo mi corazón para ti</p>
+    </div>
+
+    <div class="section">
+      <div class="cute-text">🌷 Tulipanes de amor 🌷</div>
+      <div class="emoji-row">🌷🌷🌷🌷🌷</div>
+      <p>Como estos tulipanes, mi amor por ti florece cada día 🌸</p>
+    </div>
+
+    <div class="section">
+      <div class="cute-text">🐱 Gatitos tiernos 🐱</div>
+      <div class="emoji-row">😸😽😻</div>
+      <p>Eres tan dulce y tierna como estos mininos. ¡Te adoro! 💖</p>
+    </div>
+
+    <div class="section">
+      <div class="cute-text">🍉 Mi patillita 🍉</div>
+      <div class="emoji-row">🍉</div>
+      <p>Tu dulzura refresca mi alma como una patilla en verano 🌞</p>
+    </div>
+
+    
+
+    <div class="section message">
+      <h2>Mi Mensaje de Amor 💌</h2>
+      <p>
+        Mi amor, cada día contigo es un regalo. Tu ternura, dulzura y alegría llenan mi mundo.
+        Gracias por existir, por ser mi compañera, por hacer que todo sea más bonito.
+      </p>
+      <br>
+      <p style="font-size: 1.4em;">Te amo más de lo que puedo decir con palabras. 💖</p>
+    </div>
+
+    <div class="section">
+      <div class="typewriter" id="typewriterText">Siempre serás mi amor eterno 💘</div>
+    </div>
+  </div>
+
+  <!-- Modal sorpresa -->
+  <div class="modal" id="surpriseModal">
+    <div class="modal-content">
+      <h2>🎉 Sorpresa 🎉</h2>
+      <p>¡Tú eres mi razón de sonreír todos los días! 🌟</p>
+      <button class="close-btn" onclick="hideSurprise()">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    let loveSeconds = 0;
+    setInterval(() => {
+      loveSeconds++;
+      document.getElementById('loveCount').textContent = loveSeconds.toLocaleString();
+    }, 1000);
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.getElementById('heartsContainer').appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 400);
+
+    function addLove() {
+      alert("💗 ¡Te mando todo mi amor! 💗");
+    }
+
+    function showSurprise() {
+      document.getElementById('surpriseModal').style.display = 'flex';
+    }
+
+    function hideSurprise() {
+      document.getElementById('surpriseModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
